@@ -1,0 +1,46 @@
+module ActsAsCsv
+    def self.included(base) # base is the RubyCsv class
+        base.extend ClassMethods # then we include these methods to the base class
+    end
+
+    module ClassMethods
+        def acts_as_csv
+            include InstanceMethods
+        end
+    end
+
+    module InstanceMethods
+        def read
+            @csv_contents = []
+            filename = self.class.to_s.downcase + '.txt'
+            file = File.new(filename)
+
+            @headers = file.gets.chomp.split(', ')
+            file.each do |row|
+                @csv_contents << row.chomp.split(', ')
+            end
+        end
+        attr_accessor :headers, :csv_contents
+
+        def each(&block)
+            @csv_contents.each do |row|
+                block.call(row)
+            end
+        end
+
+        def initialize
+            read
+        end
+
+    end
+end
+
+class RubyCsv #no inheritance
+    include ActsAsCsv
+    acts_as_csv
+end
+
+m = RubyCsv.new
+# puts m.headers.inspect
+# puts m.csv_contents.inspect
+m.each {|row| p row[2]}

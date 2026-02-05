@@ -58,3 +58,38 @@ puts frutas.each {|fruta| fruta.sub!(/.*/, 'tangerina') }
 frutas = ['banana', 'maca', 'pera', 'uva', 'manga', 'abacaxi']
 new_frutas = frutas.map {|fruta| fruta.sub(/\w+/, 'tangerina') }
 puts new_frutas
+
+a = [1,2,3,4,5]
+a.any? {|i| i>6}
+#false
+a.any? {|i| i>4}
+#true
+a.all? {|i| i>4}
+#false
+
+a.collect {|i| i*2}
+#[2,4,6,8,10]
+
+a.select {|i| i % 2 == 0}
+#[2,4]
+a.member?(2)
+#true
+
+a.inject(0) {|sum, i| sum + i} # basicamente um reduce.
+
+h = {"a" => 100, "b" => 200}
+h.to_a # [["a", 100],["b", 200]]
+
+h.each {|key, value| puts key}
+
+array16 = (1..16).to_a
+while !array16.empty?
+  puts array16.pop()
+  puts array16.pop()
+  puts array16.pop()
+  puts array16.pop()
+  puts "========"
+end
+
+(1..16).each_slice(4) {|n| p n}
+
