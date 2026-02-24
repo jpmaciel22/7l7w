@@ -36,3 +36,35 @@ typezinho proto
   metodo_massa = method(...)
   type         = "Typezudo"
 
+lista := list("oi", 1, 2, 3, 4)
+lista size
+→ 5
+lista append(5)
+→ list("oi", 1,2,3,4,5)
+
+list(1,2,3,4) sum
+→ 10
+
+list(1,2,3) at(1)
+→ 2
+
+list(1,2,3,4) average
+→ 2.5
+
+list(1,2,3,4) prepend(0)
+→ list(0,1,2,3,4)
+
+hash := Map clone
+hash atPut("mario", "brothers")
+hash at("mario")
+→ brothers
+hash keys
+→ mario
+
+#da pra perceber q um hash e basicamente uma traducao 1 pra 1 de um object...
+
+hash asObject
+→ Object_0x11c1d90
+  mario = "brothers"
+
+
